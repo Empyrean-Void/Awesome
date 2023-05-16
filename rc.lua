@@ -45,12 +45,11 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
-beautiful.init(theme_path)
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nano"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -62,10 +61,17 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.tile,
     awful.layout.suit.floating,
+    awful.layout.suit.tile,
+    -- awful.layout.suit.corner.ne,
+    -- awful.layout.suit.corner.sw,
+    -- awful.layout.suit.corner.se,
 }
 -- }}}
+
+--- {{{ Scripts
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+awful.spawn.with_shell("~/.config/awesome/display-layout.sh")
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -82,8 +88,8 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
--- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
---                                     menu = mymainmenu })
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -137,6 +143,15 @@ local tasklist_buttons = gears.table.join(
                                           end))
 
 local function set_wallpaper(s)
+    -- Wallpaper
+    -- if beautiful.wallpaper then
+        -- local wallpaper = beautiful.wallpaper
+        -- If wallpaper is a function, call it with the screen
+        -- if type(wallpaper) == "function" then
+           -- wallpaper = wallpaper(s)
+        -- end
+        -- gears.wallpaper.maximized(wallpaper, s, true)
+    -- end
     awful.spawn.with_shell("nitrogen --restore")
 end
 
@@ -189,17 +204,13 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mytextclock,
+            mykeyboardlayout,
             wibox.widget.systray(),
-            s.mylayoutbox
+            mytextclock,
+            s.mylayoutbox,
         },
     }
 end)
--- }}}
-
---- {{{ Scripts
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
-awful.spawn.with_shell("~/.config/awesome/display-layout.sh")
 -- }}}
 
 -- {{{ Mouse bindings
@@ -218,6 +229,9 @@ globalkeys = gears.table.join(
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
+    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
+              {description = "go back", group = "tag"}),
+
     awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
@@ -230,8 +244,8 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () awful.spawn.with_shell("firefox") end,
-              {description = "Launch web browser", group = "launcher"}),
+    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
+              {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -291,7 +305,7 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "a",     function () awful.spawn.with_shell("~/.config/awesome/launcher.sh") end,
+    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
@@ -304,30 +318,9 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
-    -- Volume
-    awful.key({ }, "XF86AudioRaiseVolume", function ()
-       awful.spawn.with_shell("~/.config/awesome/volume-notify.sh up") end),
-   awful.key({ }, "XF86AudioLowerVolume", function ()
-       awful.spawn.with_shell("~/.config/awesome/volume-notify.sh down") end),
-   awful.key({ }, "XF86AudioMute", function ()
-       awful.spawn.with_shell("~/.config/awesome/volume-notify.sh mute") end),
-
-   awful.key({ modkey }, "b",
-          function ()
-              myscreen = awful.screen.focused()
-              myscreen.mywibox.visible = not myscreen.mywibox.visible
-          end,
-          {description = "toggle statusbar"}),
-   awful.key({ modkey }, "Escape",
-          function ()
-              awful.spawn.with_shell("~/.config/awesome/powermenu.sh")
-          end),
-   awful.key({ modkey, "Shift" }, "Escape",
-          function ()
-              awful.spawn.with_shell("~/.config/awesome/power-save.sh")
-          end
-)
-
+    -- Menubar
+    awful.key({ modkey }, "p", function() menubar.show() end,
+              {description = "show the menubar", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
@@ -348,13 +341,16 @@ clientkeys = gears.table.join(
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, "n",
-        function ()
-            awful.spawn.with_shell("~/.config/awesome/networks.sh")
+        function (c)
+            -- The client currently has the input focus, so it cannot be
+            -- minimized, since minimized clients can't have the focus.
+            c.minimized = true
         end ,
         {description = "minimize", group = "client"}),
     awful.key({ modkey,           }, "m",
-        function ()
-            awful.spawn.with_shell("~/.config/awesome/display-mode.sh")
+        function (c)
+            c.maximized = not c.maximized
+            c:raise()
         end ,
         {description = "(un)maximize", group = "client"}),
     awful.key({ modkey, "Control" }, "m",
@@ -488,7 +484,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
+      }, properties = { titlebars_enabled = true }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
