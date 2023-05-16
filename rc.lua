@@ -63,9 +63,6 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
 }
 -- }}}
 
@@ -84,8 +81,8 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+-- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+--                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -191,9 +188,8 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
+            wibox.widget.systray(),
         },
     }
 end)
@@ -315,7 +311,16 @@ globalkeys = gears.table.join(
    awful.key({ }, "XF86AudioLowerVolume", function ()
        awful.spawn.with_shell("~/.config/awesome/volume-notify.sh down") end),
    awful.key({ }, "XF86AudioMute", function ()
-       awful.spawn.with_shell("~/.config/awesome/volume-notify.sh mute") end)
+       awful.spawn.with_shell("~/.config/awesome/volume-notify.sh mute") end),
+
+   awful.key({ modkey }, "b",
+          function ()
+              myscreen = awful.screen.focused()
+              myscreen.mywibox.visible = not myscreen.mywibox.visible
+          end,
+          {description = "toggle statusbar"}
+)
+
 )
 
 clientkeys = gears.table.join(
