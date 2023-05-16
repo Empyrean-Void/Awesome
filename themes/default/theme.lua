@@ -16,11 +16,11 @@ theme.font          = "JetBrainsMono Nerd Font 10"
 theme.bg_normal     = "#282828"
 theme.bg_focus      = "#83a598"
 theme.bg_urgent     = "#fb4934"
-theme.bg_minimize   = "#282828"
+theme.bg_minimize   = "#83a598"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#ebdbb2"
-theme.fg_focus      = "#282828"
+theme.fg_focus      = "#ebdbb2"
 theme.fg_urgent     = "#ebdbb2"
 theme.fg_minimize   = "#ebdbb2"
 
