@@ -1,6 +1,6 @@
 #! /bin/sh
 
-chosen=$(printf "󰍺  Dual Display\n󰍹  External\n󰍹  Laptop" | dmenu)
+chosen=$(printf "󰍺  Dual Display\n󰍹  External\n󰍹  Laptop" | rofi -dmenu -config "~/.config/rofi/display.rasi" -p "Display: ")
 
 case "$chosen" in
 	"󰍺  Dual Display")
