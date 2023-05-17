@@ -455,9 +455,7 @@ awful.rules.rules = {
     -- Floating clients.
     { rule_any = {
         instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-          "pinentry",
+          "thunar",
         },
         class = {
           "Arandr",
@@ -489,8 +487,12 @@ awful.rules.rules = {
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    { rule = { class = "Firefox" },
+        properties = { screen = 1, tag = "2" } },
+
+    -- Set Thunar to always map on the tag named "3" on screen 1.
+    { rule = { class = "Thunar" },
+        properties = { screen = 1, tag = "3" } },
 }
 -- }}}
 
