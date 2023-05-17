@@ -144,14 +144,6 @@ local tasklist_buttons = gears.table.join(
 
 local function set_wallpaper()
     -- Wallpaper
-    -- if beautiful.wallpaper then
-        -- local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        -- if type(wallpaper) == "function" then
-           -- wallpaper = wallpaper(s)
-        -- end
-        -- gears.wallpaper.maximized(wallpaper, s, true)
-    -- end
     awful.spawn.with_shell("nitrogen --restore")
 end
 
@@ -229,8 +221,6 @@ globalkeys = gears.table.join(
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
-              {description = "go back", group = "tag"}),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -244,8 +234,6 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -305,22 +293,48 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey },            "a",     function () awful.spawn.with_shell("~/.config/awesome/scripts/launcher.sh") end,
               {description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"}),
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    -- {{{ Custom keybinds
+
+        -- Web browser
+        awful.key({ modkey }, "w", function() awful.spawn.with_shell("firefox") end,
+        {description = "launch web browser", group = "launcher"}),
+
+        -- File manager
+        awful.key({ modkey, "Shift" }, "f", function() awful.spawn.with_shell("thunar") end,
+        {description = "launch file manager", group = "launcher"}),
+
+        -- Monitor menu
+        awful.key({ modkey }, "m", function () awful.spawn.with_shell("~/.config/awesome/scripts/display-mode.sh") end,
+        {description = "launch monitor menu", group = "launcher"}),
+
+        -- Network menu
+        awful.key({ modkey }, "n", function() awful.spawn.with_shell("~/.config/awesome/scripts/networks.sh") end,
+        {description = "launch network menu", group = "launcher"}),
+
+        -- Power menu
+        awful.key({ modkey }, "Escape", function () awful.spawn.with_shell("~/.config/awesome/scripts/powermenu.sh") end,
+        {description = "launch power menu", group = "launcher"}),
+
+        -- Power save menu
+        awful.key({ modkey, "Shift" }, "Escape", function () awful.spawn.with_shell("~/.config/awesome/scripts/power-save.sh") end,
+        {description = "launch power save menu", group = "launcher"}),
+
+        -- Volume control
+        awful.key({}, "XF86AudioRaiseVolume", function () awful.spawn.with_shell("~/.config/awesome/scripts/volume-notify.sh up") end),
+        awful.key({}, "XF86AudioLowerVolume", function () awful.spawn.with_shell("~/.config/awesome/scripts/volume-notify.sh down") end),
+        awful.key({}, "XF86AudioMute", function () awful.spawn.with_shell("~/.config/awesome/scripts/volume-notify.sh mute") end),
+        awful.key({}, "XF86AudioMicMute", function () awful.spawn.with_shell("wpctl set-source-mute @DEFAULT_SOURCE@ toggle") end),
+
+        -- Brightness control
+        awful.key({}, "XF86MonBrightnessUp", function () awful.spawn.with_shell("~/.config/awesome/scripts/brightness-notify.sh up") end),
+        awful.key({}, "XF86MonBrightnessDown", function () awful.spawn.with_shell("~/.config/awesome/scripts/brightness-notify.sh down") end),
+
+        -- Media control
+        awful.key({}, "XF86AudioPlay", function () awful.spawn.with_shell("~/.config/awesome/scripts/brightness-notify.sh up") end)
+    -- }}}
 )
 
 clientkeys = gears.table.join(
@@ -340,19 +354,6 @@ clientkeys = gears.table.join(
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end ,
-        {description = "minimize", group = "client"}),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            c.maximized = not c.maximized
-            c:raise()
-        end ,
-        {description = "(un)maximize", group = "client"}),
     awful.key({ modkey, "Control" }, "m",
         function (c)
             c.maximized_vertical = not c.maximized_vertical
