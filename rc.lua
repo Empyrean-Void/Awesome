@@ -336,7 +336,15 @@ globalkeys = gears.table.join(
         awful.key({}, "XF86AudioPlay", function () awful.spawn.with_shell("~/.config/awesome/scripts/brightness-notify.sh up") end),
 
         -- Screenshot
-        awful.key({ modkey }, "Print", function () awful.spawn.with_shell("scrot 'screenshot-%F-%H-%M.png' -e 'mv $f ~/Pictures/screenshots' && notify-send 'Screenshot captured'") end)
+        awful.key({ modkey }, "Print", function () awful.spawn.with_shell("scrot 'screenshot-%F-%H-%M.png' -e 'mv $f ~/Pictures/screenshots' && notify-send 'Screenshot captured'") end),
+
+        -- Toggle Wibar
+        awful.key({ modkey }, "b",
+        function ()
+            myscreen = awful.screen.focused()
+            myscreen.mywibox.visible = not myscreen.mywibox.visible
+        end,
+        {description = "toggle wibar", group = "client"})
     -- }}}
 )
 
