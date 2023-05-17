@@ -333,7 +333,10 @@ globalkeys = gears.table.join(
         awful.key({}, "XF86MonBrightnessDown", function () awful.spawn.with_shell("~/.config/awesome/scripts/brightness-notify.sh down") end),
 
         -- Media control
-        awful.key({}, "XF86AudioPlay", function () awful.spawn.with_shell("~/.config/awesome/scripts/brightness-notify.sh up") end)
+        awful.key({}, "XF86AudioPlay", function () awful.spawn.with_shell("~/.config/awesome/scripts/brightness-notify.sh up") end),
+
+        -- Screenshot
+        awful.key({ modkey }, "Print", function () awful.spawn.with_shell("scrot 'screenshot-%F-%H-%M.png' -e 'mv $f ~/Pictures/screenshots' && notify-send 'Screenshot captured'") end)
     -- }}}
 )
 
