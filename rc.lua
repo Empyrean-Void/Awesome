@@ -68,9 +68,10 @@ awful.layout.layouts = {
 }
 -- }}}
 
---- {{{ Scripts
+-- {{{ Scripts
 awful.spawn.with_shell("~/.config/awesome/scripts/autorun.sh")
 awful.spawn.with_shell("~/.config/awesome/scripts/display-layout.sh")
+-- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -141,7 +142,7 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
-local function set_wallpaper(s)
+local function set_wallpaper()
     -- Wallpaper
     -- if beautiful.wallpaper then
         -- local wallpaper = beautiful.wallpaper
@@ -159,7 +160,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    set_wallpaper(s)
+    set_wallpaper()
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
@@ -196,14 +197,14 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            -- mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            -- mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
