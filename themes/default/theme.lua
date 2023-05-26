@@ -15,9 +15,9 @@ theme.font          = "JetBrainsMono Nerd Font 10"
 theme.tasklist_disable_icon = true
 
 theme.bg_normal     = "#282828"
-theme.bg_focus      = "#83a598"
+theme.bg_focus      = "#282828"
 theme.bg_urgent     = "#fb4934"
-theme.bg_minimize   = "#83a598"
+theme.bg_minimize   = "#8fa598"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#ebdbb2"
@@ -28,8 +28,10 @@ theme.fg_minimize   = "#ebdbb2"
 theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(1)
 theme.border_normal = "#282828"
-theme.border_focus  = "#83a598"
+theme.border_focus  = "#282828"
 theme.border_marked = "#fb4934"
+
+theme.accent = "#8fa598"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -52,12 +54,12 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
+theme.taglist_bg_focus = theme.accent
+theme.taglist_bg_urget = theme.bg_urgent
 
 -- Variables set for theming notifications:
--- notification_font
--- notification_[bg|fg]
--- notification_[width|height|margin]
--- notification_[border_color|border_width|shape|opacity]
+theme.notification_font = theme.font
+theme.notification_bg = theme.bg_normal
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]

@@ -7,9 +7,9 @@ local wibar = {}
 function wibar.setup(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6" }, s, awful.layout.layouts[1])
 
-    for i = 6, 9 do
+    for i = 4, 6 do
         awful.tag.gettags(s)[i].layout = awful.layout.suit.floating
     end
 
@@ -26,7 +26,7 @@ function wibar.setup(s)
     vicious.register(battery_widget, vicious.widgets.bat, function(_, args)
         local charge_percentage = args[2]
 
-        local color = "#b8bb26"  -- Default color (green)
+        local color = "#8fa598"
 
         if charge_percentage <= 25 then
             color = "#fb4934"
@@ -34,7 +34,7 @@ function wibar.setup(s)
             color = "#fabd2f"
         end
 
-        return "<span color='" .. color .. "'>Battery: " .. charge_percentage .. "%</span>"
+        return "<span color='" .. color .. "'> ".."</span>"
     end, 61, "BAT0")
 
     -- Padding widget
