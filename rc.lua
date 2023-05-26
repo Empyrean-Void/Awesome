@@ -144,7 +144,7 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
-beautiful.wallpaper = awful.util.get_configuration_dir() .. "coast.jpg"
+beautiful.wallpaper = awful.util.get_configuration_dir() .. "images/coast.jpg"
 
 local function set_wallpaper()
     -- Wallpaper
