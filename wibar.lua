@@ -60,6 +60,7 @@ function wibar.setup(s)
             layout = wibox.layout.fixed.horizontal,
             battery_widget,
             padding_widget,
+            wibox.widget.systray(),
         },
     }
 end

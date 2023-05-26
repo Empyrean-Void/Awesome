@@ -437,14 +437,6 @@ awful.rules.rules = {
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = true }
     },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    { rule = { class = "Firefox" },
-        properties = { screen = 1, tag = "2" } },
-
-    -- Set Thunar to always map on the tag named "3" on screen 1.
-    { rule = { class = "Thunar" },
-        properties = { screen = 1, tag = "3" } },
 }
 -- }}}
 
