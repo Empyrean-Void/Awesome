@@ -23,5 +23,5 @@ The main configuration file is `rc.lua`. The status bar can be configured in `wi
 
 ## To-do
 
-- [] move keybinds to separate file
-- [] improve wibar
+- [ ] move keybinds to separate file
+- [ ] improve wibar
