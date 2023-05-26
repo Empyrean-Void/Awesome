@@ -18,7 +18,7 @@ theme.tasklist_disable_icon = true
 theme.bg_normal     = "#282828"
 theme.bg_focus      = "#282828"
 theme.bg_urgent     = "#fb4934"
-theme.bg_minimize   = "#8fa598"
+theme.bg_minimize   = "#689d6a"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#ebdbb2"
@@ -32,8 +32,7 @@ theme.border_normal = "#282828"
 theme.border_focus  = "#282828"
 theme.border_marked = "#fb4934"
 
-theme.accent = "#8fa598"
-theme.green = "#b8bb26"
+theme.accent = "#689d6a"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -80,9 +79,9 @@ theme.titlebar_close_button_normal = gears.color.recolor_image(themes_path.. "de
 theme.titlebar_close_button_focus  = gears.color.recolor_image(themes_path.. "default/titlebar/close_normal.png", theme.bg_urgent)
 
 theme.titlebar_maximized_button_normal_inactive = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_inactive.png", theme.fg_normal)
-theme.titlebar_maximized_button_focus_inactive  = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_inactive.png", theme.green)
+theme.titlebar_maximized_button_focus_inactive  = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_inactive.png", theme.accent)
 theme.titlebar_maximized_button_normal_active = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_active.png", theme.fg_normal)
-theme.titlebar_maximized_button_focus_active  = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_active.png", theme.green)
+theme.titlebar_maximized_button_focus_active  = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_active.png", theme.accent)
 
 -- theme.wallpaper = themes_path.."default/gruvbox.jpg"
 
