@@ -9,10 +9,19 @@
 
 **Download Required dependencies:** 
 
-`yay -S awesome vicious kitty neovim rofi picom`
+`yay -S awesome vicious kitty neovim rofi picom nm-applet`
 
 **Clone this repository**
 
 :heavy_exclamation_mark: **Backup your old config** 
 
 `git clone https://github.com/Empyrean-Void/Awesome.git ~/.config/awesome/`
+
+## Configuration
+
+The main configuration file is `rc.lua`. The status bar can be configured in `wibar.lua`, and the titlebar in `titlebar.lua`.
+
+## To-do
+
+- [] move keybinds to separate file
+- [] improve wibar
