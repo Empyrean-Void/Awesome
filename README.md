@@ -16,6 +16,8 @@
 
 `git clone https://github.com/Empyrean-Void/Awesome.git ~/.config/awesome/`
 
+You can also download a zip archive of the latest release.
+
 ## Configuration
 
 The main configuration file is `rc.lua`. The status bar can be configured in `wibar.lua`, and the titlebar in `titlebar.lua`.
