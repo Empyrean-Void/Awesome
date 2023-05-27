@@ -1,6 +1,7 @@
 local wibox = require("wibox")
 local awful = require("awful")
 local vicious = require("vicious")
+local gears = require("gears")
 
 local wibar = {}
 
@@ -12,6 +13,21 @@ function wibar.setup(s)
     for i = 4, 6 do
         awful.tag.gettags(s)[i].layout = awful.layout.suit.floating
     end
+
+    -- Search widget
+    local search_widget = wibox.widget {
+        {
+            text = " ",
+            widget = wibox.widget.textbox
+        },
+        widget = wibox.container.background
+    }
+
+    search_widget:buttons(gears.table.join(
+        awful.button({}, 1, function ()
+            awful.spawn.with_shell("~/.config/awesome/scripts/launcher.sh")
+        end)
+    ))
 
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
@@ -60,6 +76,9 @@ function wibar.setup(s)
         expand = "none",
         {
             layout = wibox.layout.fixed.horizontal,
+            padding_widget,
+            search_widget,
+            padding_widget,
             s.mytaglist,
         },
             mytextclock,
