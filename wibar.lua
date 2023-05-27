@@ -45,7 +45,14 @@ function wibar.setup(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({
+        position = "top",
+        screen = s,
+        width = 1908,
+        height = 24,
+        border_width = 4,
+        border_color = "#00000000"
+    })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
