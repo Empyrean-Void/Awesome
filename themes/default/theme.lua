@@ -33,7 +33,7 @@ theme.border_normal = "#282828"
 theme.border_focus  = "#282828"
 theme.border_marked = "#fb4934"
 
-theme.accent = "#689d6a"
+theme.accent = "#b8bb26"
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(5)

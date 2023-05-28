@@ -63,7 +63,7 @@ function wibar.setup(s)
     vicious.register(battery_widget, vicious.widgets.bat, function(_, args)
         local charge_percentage = args[2]
 
-        local color = "#689d6a"
+        local color = "#b8bb26"
 
         if charge_percentage <= 25 then
             color = "#fb4934"
