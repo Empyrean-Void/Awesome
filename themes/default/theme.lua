@@ -13,7 +13,7 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "JetBrainsMono Nerd Font 10"
+theme.font          = "JetBrainsMono Nerd Font 12"
 theme.tasklist_disable_icon = true
 
 theme.bg_normal     = "#282828"
@@ -36,15 +36,18 @@ theme.border_marked = "#fb4934"
 theme.accent = "#689d6a"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+local taglist_square_size = dpi(5)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
-theme.taglist_bg_focus = theme.accent
-theme.taglist_bg_urget = theme.bg_urgent
+theme.taglist_bg_focus = theme.bg_normal
+theme.taglist_fg_focus = theme.accent
+
+theme.taglist_bg_urget = theme.bg_normal
+theme.taglist_fg_urget = theme.fg_urgent
 
 -- Variables set for theming notifications:
 theme.notification_font = theme.font

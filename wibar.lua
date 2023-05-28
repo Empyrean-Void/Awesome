@@ -8,7 +8,7 @@ local wibar = {}
 function wibar.setup(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6" }, s, awful.layout.layouts[1])
+    awful.tag({ "󰆢 ", "󰆢 ", "󰆢 ", "󱂬 ", "󱂬 ", "󱂬 " }, s, awful.layout.layouts[1])
 
     for i = 4, 6 do
         awful.tag.gettags(s)[i].layout = awful.layout.suit.floating
@@ -71,7 +71,7 @@ function wibar.setup(s)
             color = "#fabd2f"
         end
 
-        return "<span color='" .. color .. "'> ".."</span>"
+        return "<span color='" .. color .. "'>  ".."</span>"
     end, 61, "BAT0")
 
     battery_widget:buttons(gears.table.join(
@@ -114,7 +114,6 @@ function wibar.setup(s)
         {
             layout = wibox.layout.fixed.horizontal,
             battery_widget,
-            padding_widget,
             wibox.widget.systray(),
         },
     }
