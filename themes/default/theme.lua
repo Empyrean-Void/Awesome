@@ -84,13 +84,13 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = gears.color.recolor_image(themes_path.. "default/titlebar/close_normal.png", theme.fg_normal)
-theme.titlebar_close_button_focus  = gears.color.recolor_image(themes_path.. "default/titlebar/close_normal.png", theme.bg_urgent)
+theme.titlebar_close_button_normal = gears.color.recolor_image("/home/empyrean/.config/awesome/themes/default/titlebar/circle.svg", theme.fg_normal)
+theme.titlebar_close_button_focus  = gears.color.recolor_image("/home/empyrean/.config/awesome/themes/default/titlebar/circle.svg", theme.bg_urgent)
 
-theme.titlebar_maximized_button_normal_inactive = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_inactive.png", theme.fg_normal)
-theme.titlebar_maximized_button_focus_inactive  = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_inactive.png", theme.accent)
-theme.titlebar_maximized_button_normal_active = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_active.png", theme.fg_normal)
-theme.titlebar_maximized_button_focus_active  = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_active.png", theme.accent)
+theme.titlebar_maximized_button_normal_inactive = gears.color.recolor_image("/home/empyrean/.config/awesome/themes/default/titlebar/circle.svg", theme.fg_normal)
+theme.titlebar_maximized_button_focus_inactive  = gears.color.recolor_image("/home/empyrean/.config/awesome/themes/default/titlebar/circle.svg", theme.accent)
+theme.titlebar_maximized_button_normal_active = gears.color.recolor_image("/home/empyrean/.config/awesome/themes/default/titlebar/circle.svg", theme.fg_normal)
+theme.titlebar_maximized_button_focus_active  = gears.color.recolor_image("/home/empyrean/.config/awesome/themes/default/titlebar/circle.svg", theme.accent)
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
