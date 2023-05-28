@@ -6,6 +6,7 @@ local gears = require("gears")
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
+local naughty = require("naughty")
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
@@ -34,19 +35,6 @@ theme.border_marked = "#fb4934"
 
 theme.accent = "#689d6a"
 
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
--- tasklist_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- prompt_[fg|bg|fg_cursor|bg_cursor|font]
--- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
-
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
@@ -61,6 +49,24 @@ theme.taglist_bg_urget = theme.bg_urgent
 -- Variables set for theming notifications:
 theme.notification_font = theme.font
 theme.notification_bg = theme.bg_normal
+naughty.config.defaults.position = "top_middle"
+naughty.config.defaults.ontop = true
+naughty.config.defaults.timeout = 5
+
+naughty.config.presets.normal = {
+  fg = theme.fg_normal,
+  bg = theme.bg_normal,
+}
+
+naughty.config.presets.low = {
+  fg = theme.fg_normal,
+  bg = theme.bg_normal,
+}
+
+naughty.config.presets.critical = {
+  fg = theme.fg_normal,
+  bg = theme.bg_urgent
+}
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
@@ -82,8 +88,6 @@ theme.titlebar_maximized_button_normal_inactive = gears.color.recolor_image(them
 theme.titlebar_maximized_button_focus_inactive  = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_inactive.png", theme.accent)
 theme.titlebar_maximized_button_normal_active = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_active.png", theme.fg_normal)
 theme.titlebar_maximized_button_focus_active  = gears.color.recolor_image(themes_path.. "default/titlebar/maximized_normal_active.png", theme.accent)
-
--- theme.wallpaper = themes_path.."default/gruvbox.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"

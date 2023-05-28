@@ -14,6 +14,22 @@ function wibar.setup(s)
         awful.tag.gettags(s)[i].layout = awful.layout.suit.floating
     end
 
+    -- Power widget
+    local power_widget = wibox.widget {
+        {
+            text = " ",
+            widget = wibox.widget.textbox
+        },
+        widget = wibox.container.background,
+        fg = "#fb4934"
+    }
+
+    power_widget:buttons(gears.table.join(
+        awful.button({}, 1, function ()
+            awful.spawn.with_shell("~/.config/awesome/scripts/powermenu.sh")
+        end)
+    ))
+
     -- Search widget
     local search_widget = wibox.widget {
         {
@@ -29,11 +45,16 @@ function wibar.setup(s)
         end)
     ))
 
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
+    -- Taglist widget
+    taglist_widget = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons
+    }
+
+    -- Date widget
+    local date_widget = wibox.widget {
+        widget = wibox.widget.textclock
     }
 
     -- Battery widget
@@ -52,6 +73,12 @@ function wibar.setup(s)
 
         return "<span color='" .. color .. "'> ".."</span>"
     end, 61, "BAT0")
+
+    battery_widget:buttons(gears.table.join(
+        awful.button({}, 1, function ()
+            awful.spawn.with_shell("~/.config/awesome/scripts/power-save.sh")
+        end)
+    ))
 
     -- Padding widget
     local padding_widget = wibox.widget {
@@ -77,11 +104,13 @@ function wibar.setup(s)
         {
             layout = wibox.layout.fixed.horizontal,
             padding_widget,
+            power_widget,
+            padding_widget,
             search_widget,
             padding_widget,
-            s.mytaglist,
+            taglist_widget,
         },
-            mytextclock,
+            date_widget,
         {
             layout = wibox.layout.fixed.horizontal,
             battery_widget,
