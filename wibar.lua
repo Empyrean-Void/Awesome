@@ -8,7 +8,7 @@ local wibar = {}
 function wibar.setup(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "󰆢 ", "󰆢 ", "󰆢 ", "󱂬 ", "󱂬 ", "󱂬 " }, s, awful.layout.layouts[1])
+    awful.tag({ " ", " ", " ", "󱂬 ", "󱂬 ", "󱂬 " }, s, awful.layout.layouts[1])
 
     for i = 4, 6 do
         awful.tag.gettags(s)[i].layout = awful.layout.suit.floating
@@ -115,6 +115,7 @@ function wibar.setup(s)
             layout = wibox.layout.fixed.horizontal,
             battery_widget,
             wibox.widget.systray(),
+            padding_widget
         },
     }
 end
