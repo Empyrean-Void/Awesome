@@ -52,10 +52,40 @@ function wibar.setup(s)
         buttons = taglist_buttons
     }
 
+    -- Calendar widget
+    local cal_widget = wibox.widget {
+        date = os.date('*t'),
+        week_numbers = false,
+        widget = wibox.widget.calendar.month
+    }
+
+    cal_widget.forced_width = 300
+
+    local pad_cal_widget = wibox.container.margin(cal_widget, 0, 15, 5, 5)
+
     -- Date widget
     local date_widget = wibox.widget {
         widget = wibox.widget.textclock
     }
+
+    local cal_popup = awful.popup {
+        widget = pad_cal_widget,
+        ontop = true,
+        visible = false,
+        placement = awful.placement.centered
+    }
+
+    local function toggle_cal_popup()
+        cal_popup.visible = not cal_popup.visible
+    end
+
+    date_widget:buttons(gears.table.join(
+        awful.button({}, 1, toggle_cal_popup)
+    ))
+
+    date_widget:buttons(gears.table.join(
+        awful.button({}, 1, toggle_cal_popup)
+    ))
 
     -- Battery widget
     local battery_widget = wibox.widget.textbox()
