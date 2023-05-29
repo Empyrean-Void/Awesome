@@ -6,7 +6,7 @@ echo "Thank you for using my Awesome window manager dots!"
 echo ""
 
 echo "Checking if dependencies are already installed..."
-dependencies=("awesome" "git" "kitty" "network-manager-applet" "numlockx" "picom" "polkit-gnome" "rofi" "scrot")
+dependencies=("awesome" "git" "kitty" "network-manager-applet" "numlockx" "picom" "polkit-gnome" "rofi" "scrot" "vicious")
 missing_dependencies=()
 
 for dependency in "${dependencies[@]}"; do
