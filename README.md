@@ -6,17 +6,9 @@
 
 ## Installation
 
-**Download Required dependencies:** 
+Download the latest release and run the install script
 
-`yay -S awesome vicious kitty neovim rofi picom nm-applet`
-
-**Clone this repository**
-
-:heavy_exclamation_mark: **Backup your old config** 
-
-`git clone https://github.com/Empyrean-Void/Awesome.git ~/.config/awesome/`
-
-You can also download a zip archive of the latest release.
+**:heavy_exclamation_mark: Release v1.0.0 does not have an installer**
 
 ## Configuration
 
